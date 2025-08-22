@@ -26,16 +26,15 @@ int main(){
   r = 100.0;
 
   test.SetInitPos(Vector3{(float)mainWin.GetWidth()/2, (float)mainWin.GetHeight()/2, 0});
-  test.SetAcc(Vector3 {1, 1, 0});
+  test.SetAcc(Vector3 {0.75, 0.75, 0});
 
 
   while(!WindowShouldClose()){
     BeginDrawing();
     ClearBackground(BLACK);
     DrawText("Open", 0, 0, 24, RED);
-    test.UpdateVel();
-    test.UpdatePos();
-    DrawPixelV(test.GetPos2D(), RAYWHITE);
+    DrawCircleV(test.GetPos2D(), 15, RAYWHITE);
+    test.UpdateValuesAndDraw();
     //DrawPixelV(Vector2Add(MoveInACircle(&angle, r), {400, 250}), RAYWHITE);
     EndDrawing();
   }
