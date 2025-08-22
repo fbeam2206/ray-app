@@ -11,21 +11,15 @@
   #include <raylib.h>
 #endif
 
-Vector2 DrawInACircle(double x, double r, double* i, double* j){
-  double y;
 
-  x = r*cos((r - *i)/r);
-  y = sqrt(r*r - x*x);
-
-  *i++;
-  *j++;
-
-  if(*j >= r){
-    *i--;
-  }
-  else if(*j >= r*2){
-    *j = 0;
-  }
-
-  return (Vector2){x, y};
+Vector2 MoveInACircle(float* angle, float r) {
+    float x = r * cos(*angle);
+    float y = r * sin(*angle);
+    
+    *angle += 0.01f;  // Increment angle
+    if (*angle >= 2 * PI) {
+        *angle = 0;  // Reset after full circle
+    }
+    
+    return (Vector2){x, y};
 }

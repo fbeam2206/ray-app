@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string>
 #include "src/class/winclass.h"
 #include "src/class/drawcircle.h"
 
@@ -21,16 +20,14 @@ int main(){
 
   Window mainWin; 
   mainWin.InitWin(800, 500, (char*)"Window");
-  double x, r;
-  double i, j;
-  x = 0; i = 0; j = 0;
+  float angle, r;
   r = 100.0;
 
   while(!WindowShouldClose()){
     BeginDrawing();
     ClearBackground(BLACK);
     DrawText("Open", 0, 0, 24, RED);
-    DrawPixelV(Vector2Add(DrawInACircle(x, r, &i, &j), {400, 250}), RAYWHITE);
+    DrawPixelV(Vector2Add(MoveInACircle(&angle, r), {400, 250}), RAYWHITE);
     EndDrawing();
   }
 
