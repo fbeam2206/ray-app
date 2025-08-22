@@ -1,7 +1,19 @@
 #include <stdio.h>
-#include "C:/msys64/mingw64/include/raylib.h"
 #include <string>
 #include "src/class/winclass.h"
+
+#if defined (_WIN32)
+  #define PLATFORM_WINDOWS
+#elif defined(__linux__)  
+  #define PLATFORM_LINUX
+#endif
+
+#ifdef PLATFORM_WINDOWS
+  #include "C:/msys64/mingw64/include/raylib.h"
+#elif defined(PLATFORM_LINUX)
+  #include <raylib.h>
+#endif
+
 
 int main(){
 
