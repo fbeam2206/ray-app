@@ -1,5 +1,17 @@
-#include "C:/msys64/mingw64/include/raylib.h"
+#if defined (_WIN32)
+  #define PLATFORM_WINDOWS
+#elif defined(__linux__)  
+  #define PLATFORM_LINUX
+#endif
+
+#ifdef PLATFORM_WINDOWS
+  #include "C:/msys64/mingw64/include/raylib.h"
+#elif defined(PLATFORM_LINUX)
+  #include <raylib.h>
+#endif
+
 #include <string>
+
 
 class Window
 {
@@ -37,7 +49,7 @@ class Window
       _width = width;
       _height = height;
       _name = name;
+      SetTargetFPS(60);
       InitWindow(this->_width, this->_height, this->_name);
     }
-
 };

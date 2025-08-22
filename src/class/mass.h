@@ -16,4 +16,6 @@ class Mass
     double _mass;
     Vector3 _pos;
 
+  public:
+    
 };

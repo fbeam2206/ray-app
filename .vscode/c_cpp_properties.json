@@ -4,10 +4,12 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}src/class/**",
                 "C:/msys64/mingw64/include/**",
                 "C:/msys64/mingw64/include/",
                 "C:/msys64/mingw64/lib/**",
-                "src/class/**"
+                "src/class/**",
+                "${workspaceFolder}"
             ],
             "defines": [
                 "_DEBUG",
