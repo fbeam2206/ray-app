@@ -20,7 +20,19 @@
             "cStandard": "c17",
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "C:/msys64/mingw64/bin/g++.exe"
+            "compilerPath": "/sbin/g++"
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "${default}",
+                "/usr/include/**",
+                "/usr/include/c++/**",
+                "/usr/local/include/**",
+                "/home/graham/Projects/raylib/ray-app/src/class/**"
+            ],
+            "compilerPath": "/sbin/g++",
+            "cStandard": "c17"
         }
     ],
     "version": 4

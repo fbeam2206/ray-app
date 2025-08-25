@@ -10,9 +10,6 @@
   #include <raylib.h>
 #endif
 
-#include <string>
-
-
 class Window
 {
   private:

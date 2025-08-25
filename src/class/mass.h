@@ -3,54 +3,72 @@
 #elif defined(__linux__)  
   #define PLATFORM_LINUX
 #endif
-
 #ifdef PLATFORM_WINDOWS
   #include "C:/msys64/mingw64/include/raylib.h"
+  #include "C:/msys64/mingw64/include/raymath.h"
 #elif defined(PLATFORM_LINUX)
   #include <raylib.h>
+  #include <raymath.h>
 #endif
 
 class Mass
 {
   private:
-    double _mass;
-    Vector3 _pos;
+    float _mass;
+    Vector3 _pos; //Center of Mass
     Vector3 _vel;
     Vector3 _acc;
 
     void UpdatePos(){
-      this->_pos.x += (0.5)*this->_acc.x*GetFrameTime()*GetFrameTime() + this->_vel.x*GetFrameTime(); 
-      this->_pos.y += (0.5)*this->_acc.y*GetFrameTime()*GetFrameTime() + this->_vel.y*GetFrameTime(); 
-      this->_pos.z += (0.5)*this->_acc.z*GetFrameTime()*GetFrameTime() + this->_vel.z*GetFrameTime(); 
+      this->_pos += Vector3Add(Vector3Scale(this->_acc, (0.5)*GetFrameTime()*GetFrameTime()), Vector3Scale(this->_vel, GetFrameTime())); 
     }
 
     void UpdateVel(){
-      this->_vel.x += this->_acc.x*GetFrameTime();
-      this->_vel.y += this->_acc.y*GetFrameTime();
-      this->_vel.z += this->_acc.z*GetFrameTime();
+      this->_vel += Vector3Scale(this->_acc, GetFrameTime());
     }
 
   public:
-    void UpdateValuesAndDraw(){
-      UpdateVel();
-      UpdatePos();
+    //-----Updates-----//
+    void UpdateValsAndDraw(){
+      this->UpdateVel();
+      this->UpdatePos();
+      DrawCircleV(this->GetPos2D(), 15, RAYWHITE);
     }
 
-    void SetAcc(Vector3 acc){
-      this->_acc.x = acc.x;
-      this->_acc.y = acc.y;
-      this->_acc.z = acc.z;
+    //-----Gets-----//
+    Vector3 GetAcc(){
+      return this->_acc;
     }
-
-    void SetInitPos(Vector3 pos){
-      _pos = pos;
+    Vector3 GetVel(){
+      return this->_vel;
     }
-
     Vector3 GetPos(){
       return this->_pos;
     }
-
     Vector2 GetPos2D(){
       return {this->_pos.x, this->_pos.y};
+    }
+    float GetMass(){
+      return this->_mass;
+    }
+
+    //-----Sets-----//
+    void SetPos(Vector3 pos){
+      this->_pos = pos;
+    }
+    void SetVel(Vector3 vel){
+      this->_vel = vel;
+    }
+    void SetAcc(Vector3 acc){
+      this->_acc = acc;
+    }
+    void SetMass(double mass){
+      this->_mass = mass;
+    }
+
+    
+    //-----Derivative-Attributes----//
+    Vector3 GetMomentum(){
+      return Vector3Scale(this->_vel, this->_mass);
     }
 };
