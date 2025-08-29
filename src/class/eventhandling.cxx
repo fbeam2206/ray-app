@@ -11,9 +11,12 @@
   #include <raylib.h>
   #include <raymath.h>
 #endif
-#include "mass.h"
+#include "collision.h"
 
-bool LeftClick(Mass* array[]){
+void LeftClick(PointMass array[], int* count){
   if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
+    PointMass newMass = PointMass();
+    (*count)++;
+    array[*count] = newMass;
   }
 }

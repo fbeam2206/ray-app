@@ -1,6 +1,3 @@
-#include "src/class/mass.h"
-#include "src/class/winclass.h"
-#include "src/class/drawcircle.h"
 
 #if defined (_WIN32)
   #define PLATFORM_WINDOWS
@@ -16,6 +13,9 @@
   #include <raymath.h>
 #endif
 #include <iostream>
+#include "src/class/winclass.h"
+#include "src/class/drawcircle.h"
+#include "src/class/eventhandling.cxx"
 
 ////////////////////////////
 ////////////TODO////////////
@@ -28,6 +28,7 @@
 int main(){
 
   Mass masses[100];
+  int massCount;
   Mass test;
   Window mainWin; 
   char position[32];
@@ -35,17 +36,23 @@ int main(){
   float angle, r;
   r = 100.0;
 
-  test.SetPos(Vector3{(float)mainWin.GetWidth()/2, (float)mainWin.GetHeight()/2, 0});
-  test.SetAcc(Vector3 {2, 2, 0});
-
   while(!WindowShouldClose()){
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawCircleV(test.GetPos2D(), 15, RAYWHITE);
-    test.SetPos(MoveInACircle(&angle, r));
+    //----------------------//
+
+      LeftClick(masses, &massCount);
+      for (int i = 0; i < 100; i++) {
+        masses[i].UpdateValsAndDraw();
+      }
+
+      DrawCircleV(test.GetPos2D(), 15, RAYWHITE);
+      test.SetPos(MoveInACircle(&angle, r));
+
+      
+    //----------------------//
     sprintf(position, "pos-x:%.01f", test.GetPos2D().x);
     DrawText(position, 0, 0, 21, RED);
-    //DrawPixelV(Vector2Add(MoveInACircle(&angle, r), {400, 250}), RAYWHITE);
     EndDrawing();
   }
 

@@ -11,7 +11,7 @@
   #include <raymath.h>
 #endif
 
-class Mass
+class PointMass
 {
   private:
     float _mass;
@@ -28,6 +28,18 @@ class Mass
     }
 
   public:
+    //-----Constructor-----//
+    PointMass(){
+      SetPos((Vector3){GetMousePosition().x, GetMousePosition().y, 0});
+
+      SetVel((Vector3){0,0,0});
+
+      SetAcc((Vector3){2,2,0});
+      
+      SetMass((double) 50);
+      
+    }
+
     //-----Updates-----//
     void UpdateValsAndDraw(){
       this->UpdateVel();

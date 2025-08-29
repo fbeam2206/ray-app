@@ -13,7 +13,7 @@
 #endif
 
 
-Vector3 MoveInACircle(float* angle, float r) {
+Vector3 MoveInACircle(float* angle, float r){
     float z=0;//TODO
     float x = r * cos(*angle) + (400);
     float y = r * sin(*angle) + (250);
