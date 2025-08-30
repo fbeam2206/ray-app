@@ -13,6 +13,19 @@
 #endif
 #include "mass.h"
 
+
+double Larger(double x1, double x2){
+  return x1 * (x1 > x2)
+    + x2 * (x2 >= x1);
+}
+
+
+double Smaller(double x1, double x2){
+  return x1 * (x1 < x2)
+    + x2 * (x2 <= x1);
+}
+
+
 void LeftClick(PointMass array[], int* count){
   if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
     PointMass newMass = PointMass();
@@ -21,16 +34,14 @@ void LeftClick(PointMass array[], int* count){
   }
 }
 
-bool Colliding(MassCollection m1, MassCollection m2){
-  if (m1.massTwo.GetPos().x > m2.massOne.GetPos().x){
-    if (m1.massTwo.GetPos().y > m2.massOne.GetPos().y)
-      {return 1;}
-    else {return 0;}
-  }
-  else {return 0;}
-}
 
-double Larger(MassCollection m1){
-  return m1.massOne.GetPos().x * (m1.massOne.GetPos().x > m1.massTwo.GetPos().x)
-    + m1.massTwo.GetPos().x * (m1.massTwo.GetPos().x >= m1.massOne.GetPos().x);
+bool Colliding(MassCollection m1, MassCollection m2){
+  if (Larger(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) >= Smaller(m2.massOne.GetPos().x, m2.massTwo.GetPos().x)){
+    if (Larger(m1.massOne.GetPos().y, m1.massTwo.GetPos().y) >= Smaller(m2.massOne.GetPos().y, m2.massTwo.GetPos().y)) 
+      {return 1;}
+    else 
+      {return 0;}
+  }
+  else 
+    {return 0;}
 }

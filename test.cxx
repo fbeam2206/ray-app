@@ -19,11 +19,20 @@
 
 int main(){
   MassCollection m1;
+  MassCollection m2;
 
   m1.massOne.SetPos(Vector3 {0,0,0});
   m1.massTwo.SetPos(Vector3 {100,100,0});
+  m1.massOne.SetVel(Vector3 {1,1,0});
+  m1.massTwo.SetVel(Vector3 {100,100,0});
 
-  std::cout << Larger(m1);
+  m2.massOne.SetPos(Vector3 {95,100,0});
+  m2.massTwo.SetPos(Vector3 {115,115,0});
+
+  std::cout << "Colliding: " << Colliding(m1, m2);
+
+  //std::cout << "Larger: " << Larger(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) << "\n";
+  //std::cout << "Smaller: " << Smaller(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) << "\n";
 
   return 0;
 }
