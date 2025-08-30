@@ -27,9 +27,9 @@
 
 int main(){
 
-  Mass masses[100];
+  PointMass masses[100];
   int massCount;
-  Mass test;
+  PointMass test;
   Window mainWin; 
   char position[32];
   mainWin.InitWin(800, 500, (char*)"Window");

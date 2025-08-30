@@ -22,6 +22,3 @@ void CollisionElas(PointMass* mass1, PointMass* mass2){
   mass2->SetVel( Vector3Add( Vector3Scale( mass2->GetVel(), (mass2->GetMass() - mass1->GetMass()) / (mass2->GetMass() + mass1->GetMass())) , Vector3Scale(mass1->GetVel() , (2*mass1->GetMass() / (mass2->GetMass() + mass1->GetMass()) ) ) ) );
 }
 
-bool AreColliding(){
-  
-}

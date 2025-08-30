@@ -84,3 +84,21 @@ class PointMass
       return Vector3Scale(this->_vel, this->_mass);
     }
 };
+
+
+//-----------Two Point Masses-----------//
+class MassCollection
+{
+public: 
+  PointMass massOne;
+  PointMass massTwo;
+
+  Vector2 AABBx = {massOne.GetPos().x, massTwo.GetPos().x};
+  Vector2 AABBy = {massOne.GetPos().y, massTwo.GetPos().y};
+  Vector2 AABBz = {massOne.GetPos().z, massTwo.GetPos().z};
+
+  Vector3 CoM = Vector3Scale(Vector3Add(massOne.GetPos(), massTwo.GetPos()), (float)0.5);
+  
+
+};
+
