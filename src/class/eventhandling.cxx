@@ -11,7 +11,7 @@
   #include <raylib.h>
   #include <raymath.h>
 #endif
-#include "mass.h"
+#include "collision.h"
 
 
 double Larger(double x1, double x2){
@@ -26,11 +26,11 @@ double Smaller(double x1, double x2){
 }
 
 
-void LeftClick(PointMass array[], int* count){
+void LeftClick(WorldState *state){
   if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
     PointMass newMass = PointMass();
-    (*count)++;
-    array[*count] = newMass;
+    state->IncCount();
+      state->masses[state->GetObjCount() - 1] = newMass;
   }
 }
 

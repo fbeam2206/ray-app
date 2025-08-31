@@ -9,9 +9,34 @@
 #elif defined(PLATFORM_LINUX)
   #include <raylib.h>
   #include <raymath.h>
-  #include "mass.h"
+  #include <bits/stdc++.h>
+  #include <algorithm>
 #endif
+#include "datastructs.h"
 
+bool CompareByX(PointMass m1, PointMass m2){
+  return m1.GetPos().x > m2.GetPos().x;
+}
+
+// Binary Tree - Smarter Space Partitioning
+void CheckBroadCollision(WorldState *state){
+  std::sort(state->masses.begin(), state->masses.end(), CompareByX);
+  for (auto &PointMass : state->masses){
+    std::cout << PointMass.GetPos().x;
+  }
+/*
+  for(;;){
+    // CountObjectsInSpace
+    
+    //if(count <= 2) {break;}
+
+    // OrderObjectsByXVal
+    
+    // SplitObjectsByXVal
+    
+  }
+  */
+}
 
 // Change in to pass an array of Mass so can do # arbitary number of times
 void CollisionElas(PointMass* mass1, PointMass* mass2){ 

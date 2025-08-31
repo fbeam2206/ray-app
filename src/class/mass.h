@@ -34,7 +34,7 @@ class PointMass
 
       SetVel((Vector3){0,0,0});
 
-      SetAcc((Vector3){2,2,0});
+      SetAcc((Vector3){0,4,0});
       
       SetMass((double) 50);
       
@@ -83,6 +83,11 @@ class PointMass
     Vector3 GetMomentum(){
       return Vector3Scale(this->_vel, this->_mass);
     }
+    
+    PointMass CloseObjs(){
+      PointMass massObjs[10];
+      return massObjs[9];
+  }
 };
 
 
