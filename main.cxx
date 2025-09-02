@@ -12,7 +12,6 @@
   #include <raylib.h>
   #include <raymath.h>
 #endif
-#include <iostream>
 #include "src/class/winclass.h"
 #include "src/class/drawcircle.h"
 #include "src/class/update.cxx"

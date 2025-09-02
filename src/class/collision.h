@@ -10,9 +10,10 @@
   #include <raylib.h>
   #include <raymath.h>
   #include <bits/stdc++.h>
-  #include <algorithm>
 #endif
+#include <iostream>
 #include "datastructs.h"
+#include <algorithm>
 
 bool CompareByX(PointMass m1, PointMass m2){
   return m1.GetPos().x > m2.GetPos().x;
