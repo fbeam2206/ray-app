@@ -27,7 +27,7 @@ public:
 
 class WorldState {
 private:
-  int _objCount;
+  int _objCount = 0;
 
 public:
 

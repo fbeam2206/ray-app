@@ -10,6 +10,37 @@
   #include <raylib.h>
   #include <raymath.h>
 #endif
+#include <cstdlib>
+
+Color carray[26] = {LIGHTGRAY,
+                    GRAY     ,
+                    DARKGRAY ,
+                    YELLOW   ,
+                    GOLD     ,
+                    ORANGE   ,
+                    PINK     ,
+                    RED      ,
+                    MAROON   ,
+                    GREEN    ,
+                    LIME     ,
+                    DARKGREEN,
+                    SKYBLUE  ,
+                    BLUE     ,
+                    DARKBLUE ,
+                    PURPLE   ,
+                    VIOLET   ,
+                    DARKPURPLE,
+                    BEIGE    ,
+                    BROWN    ,
+                    DARKBROWN,
+                    WHITE    ,
+                    BLACK    ,
+                    BLANK    ,
+                    MAGENTA  ,
+                    RAYWHITE };
+
+
+
 
 class PointMass
 {
@@ -18,6 +49,7 @@ class PointMass
     Vector3 _pos; //Center of Mass
     Vector3 _vel;
     Vector3 _acc;
+    Color _circleColor = carray[rand()%26];
 
     void UpdatePos(){
       this->_pos += Vector3Add(Vector3Scale(this->_acc, (0.5)*GetFrameTime()*GetFrameTime()), Vector3Scale(this->_vel, GetFrameTime())); 
@@ -28,6 +60,8 @@ class PointMass
     }
 
   public:
+    
+
     //-----Constructor-----//
     PointMass(){
       SetPos((Vector3){GetMousePosition().x, GetMousePosition().y, 0});
@@ -44,7 +78,7 @@ class PointMass
     void UpdateValsAndDraw(){
       this->UpdateVel();
       this->UpdatePos();
-      DrawCircleV(this->GetPos2D(), 15, RAYWHITE);
+      DrawCircleV(this->GetPos2D(), 15, this->_circleColor);
     }
 
     //-----Gets-----//

@@ -15,6 +15,7 @@
 #include "src/class/winclass.h"
 #include "src/class/drawcircle.h"
 #include "src/class/update.cxx"
+#include <ctime>
 
 
 ////////////////////////////
@@ -28,6 +29,8 @@
 
 int main(){
 
+  srand(static_cast<unsigned int>(time(nullptr)));
+  
   WorldState mainState;
   PointMass test;
   Window mainWin; 
@@ -44,12 +47,12 @@ int main(){
 
       UpdateLoop(&mainState);
       DrawCircleV(test.GetPos2D(), 15, RAYWHITE);
-      test.SetPos(MoveInACircle(&angle, r));
+      //test.SetPos(MoveInACircle(&angle, r));
+      //sprintf(position, "pos-x:%.01f", mainState.masses[0].GetPos2D().x);
+      //DrawText(position, 0, 0, 21, RED);
       
     //----------------------//
     
-    sprintf(position, "pos-x:%.01f", test.GetPos2D().x);
-    DrawText(position, 0, 0, 21, RED);
     EndDrawing();
   }
 

@@ -15,16 +15,47 @@
 #include "datastructs.h"
 #include <algorithm>
 
-bool CompareByX(PointMass m1, PointMass m2){
+char comp[50];
+
+bool CompareByX(PointMass& m1, PointMass& m2){
   return m1.GetPos().x > m2.GetPos().x;
 }
 
 // Binary Tree - Smarter Space Partitioning
 void CheckBroadCollision(WorldState *state){
+  int currentObjCount = state->GetObjCount();
+
   std::sort(state->masses.begin(), state->masses.end(), CompareByX);
-  for (auto &PointMass : state->masses){
-    std::cout << PointMass.GetPos().x;
+  for(auto i = state->masses.begin(); i != state->masses.end(); ++i){
+    sprintf(comp, "x[0]: %.01f", i->GetPos().x);
+    DrawText(comp, i->GetPos().x, 21, 21, RED);
+  } 
+
+  if (currentObjCount > 2)
+  {
+    if (state->masses.front().GetPos().x < state->masses.back().GetPos().x)
+    { 
+      for(auto i = state->masses.begin(); i != state->masses.end(); ++i)
+      {
+        sprintf(comp, "x[0]: %.01f", i->GetPos().x);
+        DrawText(comp, i->GetPos().x, 21, 21, RED);
+      }
+    }
+    else
+    {
+      DrawText("Error", 0, 0, 21, RED);
+      for(auto i = state->masses.begin(); i != state->masses.end(); ++i)
+      {
+        sprintf(comp, "x[0]: %.01f", i->GetPos().x);
+        DrawText(comp, i->GetPos().x, 21, 21, RED);
+      }
+    }
   }
+
+
+  //for (auto &PointMass : state->masses){
+  //  std::cout << PointMass.GetPos().x;
+  //}
 /*
   for(;;){
     // CountObjectsInSpace

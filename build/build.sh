@@ -1,4 +1,4 @@
 #!/bin/bash
 
-g++ ../main.cxx -o ./main -I../src/class/ -lraylib
+g++ ../main.cxx -g -o ./main -I../src/class/ -lraylib
 

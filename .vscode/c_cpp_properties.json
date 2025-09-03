@@ -1,38 +1,29 @@
 {
     "configurations": [
         {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}src/class/**",
-                "C:/msys64/mingw64/include/**",
-                "C:/msys64/mingw64/include/",
-                "C:/msys64/mingw64/lib/**",
-                "src/class/**",
-                "${workspaceFolder}"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "windowsSdkVersion": "10.0.26100.0",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "/sbin/g++"
-        },
-        {
             "name": "Linux",
             "includePath": [
-                "${default}",
+                "/home/graham/Projects/raylib/ray-app/**",
+                "/usr/include",
+                "/usr/local/include",
                 "/usr/include/**",
                 "/usr/include/c++/**",
+                "/usr/include/c++/15.2.1/**",
                 "/usr/local/include/**",
                 "/home/graham/Projects/raylib/ray-app/src/class/**"
             ],
             "compilerPath": "/sbin/g++",
-            "cStandard": "c17"
+            "cStandard": "c17",
+            "intelliSenseMode": "linux-gcc-x64",
+            "mergeConfigurations": false,
+            "recursiveIncludes": {
+                "priority": "beforeSystemIncludes",
+                "order": "breadthFirst"
+            },
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

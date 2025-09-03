@@ -2,42 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(gdb) Launch",
+      "name": "C/C++: g++ build and debug active file",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/a.exe",
+      "program": "${workspaceFolder}\\build\\main",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        }
-      ]
-    },
-    {
-      "name": "C/C++: g++.exe build and debug active file",
-      "type": "cppdbg",
-      "request": "launch",
-      "program": "${workspaceFolder}\\main.exe",
-      "args": [],
-      "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+      "miDebuggerPath": "/sbin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -50,7 +25,7 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "C/C++: g++.exe build active file"
+      "preLaunchTask": "C/C++: g++ build active file"
     }
   ]
 }
