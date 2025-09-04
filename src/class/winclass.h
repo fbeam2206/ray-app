@@ -5,7 +5,7 @@
 #endif
 
 #ifdef PLATFORM_WINDOWS
-  #include "C:/msys64/mingw64/include/raylib.h"
+  #include "C:/msys64/ucrt64/include/raylib.h"
 #elif defined(PLATFORM_LINUX)
   #include <raylib.h>
 #endif

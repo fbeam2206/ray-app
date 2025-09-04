@@ -4,8 +4,8 @@
   #define PLATFORM_LINUX
 #endif
 #ifdef PLATFORM_WINDOWS
-  #include "C:/msys64/mingw64/include/raylib.h"
-  #include "C:/msys64/mingw64/include/raymath.h"
+  #include "C:/msys64/ucrt64/include/raylib.h"
+  #include "C:/msys64/ucrt64/include/raymath.h"
 #elif defined(PLATFORM_LINUX)
   #include <raylib.h>
   #include <raymath.h>
