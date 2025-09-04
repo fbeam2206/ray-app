@@ -20,22 +20,28 @@
 
 
 int main(){
-  PointMass mass1;
-  PointMass mass2;
+  PointMass mass1, mass2, mass3;
 
   WorldState state;
 
   mass2.SetPos((Vector3){100, 100, 0});
   mass1.SetPos((Vector3){50, 100, 0});
+  mass1.SetPos((Vector3){25, 100, 0});
 
   state.masses.emplace_back(mass1);
   state.masses.emplace_back(mass2);
+  state.masses.emplace_back(mass3);
 
-  std::sort(state.masses.begin(), state.masses.end(), CompareByX);
+  std::sort(state.masses.begin(), state.masses.end(), OrderByX);
 
-  for(auto mass : state.masses){
-    printf("%f \n", mass.GetPos().x);
-  }
+  //for(auto mass : state.masses){
+  //  printf("%f \n", mass.GetPos().x);
+  //}
+
+  int median = FindMedian(&state);
+
+  printf("%d\n", state.masses.size());
+  printf("%d\n", median);
 
   return 0;
 }

@@ -32,6 +32,7 @@ private:
 public:
 
   std::vector<PointMass> masses;
+  std::vector<std::vector<PointMass>> massVec;
   
   /*PointMass *GetArray(){
     PointMass* array = (PointMass*)MemAlloc(20 * sizeof(PointMass));
