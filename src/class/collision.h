@@ -18,7 +18,7 @@
 char comp[50];
 
 bool CompareByX(PointMass& m1, PointMass& m2){
-  return m1.GetPos().x > m2.GetPos().x;
+  return m1.GetPos().x < m2.GetPos().x;
 }
 
 // Binary Tree - Smarter Space Partitioning

@@ -20,41 +20,22 @@
 
 
 int main(){
-  MassCollection m1;
-  MassCollection m2;
-
   PointMass mass1;
   PointMass mass2;
 
-  mass1.SetPos((Vector3) {100, 100, 0});
-  mass1.SetPos((Vector3) {50, 100, 0});
-
-  m1.massOne.SetPos(Vector3 {0,0,0});
-  m1.massTwo.SetPos(Vector3 {100,100,0});
-  m1.massOne.SetVel(Vector3 {1,1,0});
-  m1.massTwo.SetVel(Vector3 {100,100,0});
-
-  m2.massOne.SetPos(Vector3 {95,100,0});
-  m2.massTwo.SetPos(Vector3 {115,115,0});
-
-  std::cout << "Colliding: " << Colliding(m1, m2);
-
   WorldState state;
+
+  mass2.SetPos((Vector3){100, 100, 0});
+  mass1.SetPos((Vector3){50, 100, 0});
 
   state.masses.emplace_back(mass1);
   state.masses.emplace_back(mass2);
-
-  //state.masses[0].SetPos((Vector3) {100, 100,  0});
-  //state.masses[1].SetPos((Vector3) {50, 100,  0});
 
   std::sort(state.masses.begin(), state.masses.end(), CompareByX);
 
   for(auto mass : state.masses){
     printf("%f \n", mass.GetPos().x);
   }
-
-  //std::cout << "Larger: " << Larger(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) << "\n";
-  //std::cout << "Smaller: " << Smaller(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) << "\n";
 
   return 0;
 }

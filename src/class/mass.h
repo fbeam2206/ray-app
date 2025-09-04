@@ -118,10 +118,6 @@ class PointMass
       return Vector3Scale(this->_vel, this->_mass);
     }
     
-    PointMass CloseObjs(){
-      PointMass massObjs[10];
-      return massObjs[9];
-  }
 };
 
 
