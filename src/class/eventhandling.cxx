@@ -17,7 +17,7 @@
 
 void LeftClick(WorldState *state){
   if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
-    PointMass newMass = PointMass();
+    MassCollection newMass = MassCollection();
     state->IncCount();
     state->masses.emplace_back(newMass);
   }

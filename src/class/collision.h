@@ -58,9 +58,9 @@ std::vector<std::vector<MassCollection>> DivideVec(std::vector<MassCollection> *
   std::vector<std::vector<MassCollection>> chunks;
   std::vector<PointMass> splitVec;
 
-  for (int j=0, i=0; j<masses->size(); j=j+2, ++i){
-    chunks[i].emplace_back(masses[j], masses[j+1]);
-  }
+  //for (int j=0, i=0; j<masses->size(); j=j+2, ++i){
+  //  chunks[i].emplace_back(masses[j], masses[j+1]);
+  //}
   
   //for(int j=0; j < masses->size(); ++j)
   //{
@@ -84,11 +84,9 @@ void CheckBroadCollision(WorldState *state){
 
   // Checking for Overlap 
   for(int i=0; i < chunks.size(); ++i){
-    for(int k=0; k < 2; ++k){
-      if(Colliding(chunks[i][k], chunks[i][k+1]))
-      {
-        printf("Colliding: %f", chunks[i][k].massOne.GetPos().x);
-      }
+    if(Colliding(chunks[i][0], chunks[i][1]))
+    {
+      printf("Colliding: %f", chunks[i][1].massOne.GetPos().x);
     }
   }
 
