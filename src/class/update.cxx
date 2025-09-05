@@ -15,9 +15,10 @@
 void UpdateLoop(WorldState *mainState){
   
   LeftClick(mainState);
-  for (int i = 0; i <= mainState->GetObjCount() - 1; i++) {
+  for (int i = 0; i <= mainState->masses.size() - 1; i++) {
     if (i < mainState->masses.size()){
-    mainState->masses[i].UpdateValsAndDraw();
+    mainState->masses[i].massOne.UpdateValsAndDraw();
+    mainState->masses[i].massTwo.UpdateValsAndDraw();
     }
   }
   CheckBroadCollision(mainState);

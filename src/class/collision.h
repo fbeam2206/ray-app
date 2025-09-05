@@ -15,13 +15,24 @@
 #include "datastructs.h"
 #include <algorithm>
 
-char comp[50];
+//char comp[50];
 
-bool OrderByX(PointMass& m1, PointMass& m2){
-  return m1.GetPos().x < m2.GetPos().x;
+
+double Larger(double x1, double x2){
+  return x1 * (x1 > x2)
+    + x2 * (x2 >= x1);
 }
 
-int FindMedian(std::vector<PointMass> *masses){
+double Smaller(double x1, double x2){
+  return x1 * (x1 < x2)
+    + x2 * (x2 <= x1);
+}
+
+bool OrderByX(MassCollection& m1, MassCollection& m2){
+  return m1.massOne.GetPos().x < m2.massOne.GetPos().x;
+}
+
+int FindMedian(std::vector<MassCollection> *masses){
   if (masses->size() % 2 != 0)
   {
     return masses->size()/2 + 1;  
@@ -32,26 +43,25 @@ int FindMedian(std::vector<PointMass> *masses){
   }
 }
 
-void recursive(std::vector<PointMass> *masses, std::vector<std::vector<PointMass>> *massVec){
-  if(masses->size() > 2)
-  {
-    for(int i = 0; i < FindMedian(masses); ++i)
-    {
-      masses[i];
-    }
-    
+bool Colliding(MassCollection m1, MassCollection m2){
+  if (Larger(m1.massOne.GetPos().x, m1.massTwo.GetPos().x) >= Smaller(m2.massOne.GetPos().x, m2.massTwo.GetPos().x)){
+    if (Larger(m1.massOne.GetPos().y, m1.massTwo.GetPos().y) >= Smaller(m2.massOne.GetPos().y, m2.massTwo.GetPos().y)) 
+      {return 1;}
+    else 
+      {return 0;}
   }
+  else 
+    {return 0;}
 }
 
-std::vector<std::vector<PointMass>> DivideVec(std::vector<PointMass> *masses){
-  int median = FindMedian(masses);
-  std::vector<std::vector<PointMass>> chunks;
+std::vector<std::vector<MassCollection>> DivideVec(std::vector<MassCollection> *masses){
+  std::vector<std::vector<MassCollection>> chunks;
   std::vector<PointMass> splitVec;
 
-  for (int j=0; j<masses->size(); j=j+2){
-    chunks.emplace_back(masses[j], masses[j+1]);
+  for (int j=0, i=0; j<masses->size(); j=j+2, ++i){
+    chunks[i].emplace_back(masses[j], masses[j+1]);
   }
-
+  
   //for(int j=0; j < masses->size(); ++j)
   //{
   //  PointMass front_element = masses->front();
@@ -70,17 +80,22 @@ void CheckBroadCollision(WorldState *state){
     std::sort(state->masses.begin(), state->masses.end(), OrderByX);
 
   // SPLITTING
-    std::vector<std::vector<PointMass>> chunks = DivideVec(&state->masses);
+    std::vector<std::vector<MassCollection>> chunks = DivideVec(&state->masses);
 
   // Checking for Overlap 
-  for(int i=0; i < chunks.size(); ++i)
-    for(int k=0; k < 2; ++k)
-    if(Colliding(chunks[i][k], chunks[i][k+1]))
+  for(int i=0; i < chunks.size(); ++i){
+    for(int k=0; k < 2; ++k){
+      if(Colliding(chunks[i][k], chunks[i][k+1]))
+      {
+        printf("Colliding: %f", chunks[i][k].massOne.GetPos().x);
+      }
+    }
+  }
 
-  for(auto i = state->masses.begin(); i != state->masses.end(); ++i, ++j){
-    sprintf(comp, "x[%d]: %.01f", j, i->GetPos().x);
-    DrawText(comp, i->GetPos().x, i->GetPos().y - 10, 21, RED);
-  } 
+  //for(auto i = state->masses.begin(); i != state->masses.end(); ++i, ++j){
+  //  sprintf(comp, "x[%d]: %.01f", j, i->GetPos().x);
+  //  DrawText(comp, i->GetPos().x, i->GetPos().y - 10, 21, RED);
+  //} 
 
   j = 0;
 
@@ -94,3 +109,5 @@ void CollisionElas(PointMass* mass1, PointMass* mass2){
   mass1->SetVel( Vector3Add( Vector3Scale( mass1->GetVel(), (mass1->GetMass() - mass2->GetMass()) / (mass1->GetMass() + mass2->GetMass())) , Vector3Scale(mass2->GetVel() , (2*mass2->GetMass() / (mass1->GetMass() + mass2->GetMass()) ) ) ) );
   mass2->SetVel( Vector3Add( Vector3Scale( mass2->GetVel(), (mass2->GetMass() - mass1->GetMass()) / (mass2->GetMass() + mass1->GetMass())) , Vector3Scale(mass1->GetVel() , (2*mass1->GetMass() / (mass2->GetMass() + mass1->GetMass()) ) ) ) );
 }
+
+
